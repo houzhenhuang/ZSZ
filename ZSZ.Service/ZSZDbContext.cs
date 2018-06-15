@@ -19,7 +19,7 @@ namespace ZSZ.Service
         public ZSZDbContext():base("name=connstr")
             //name=conn1表示使用连接字符串中名字为conn1的去连接数据库
         {
-            Database.SetInitializer<ZSZDbContext>(null);
+            Database.SetInitializer<ZSZDbContext>(null);//从不创建数据库
             this.Database.Log = (sql) => {
                 log.DebugFormat("EF执行SQL：{0}", sql);
             }; 
