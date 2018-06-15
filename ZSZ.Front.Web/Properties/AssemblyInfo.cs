@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列特性集
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("ZSZ.FrontWeb")]
+[assembly: AssemblyTitle("ZSZ.Front.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ZSZ.FrontWeb")]
+[assembly: AssemblyProduct("ZSZ.Front.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
-[assembly: Guid("db7f8ad9-0557-4e41-aec9-a90182b60b72")]
+[assembly: Guid("43fabe04-f137-41f6-9e54-9acfc90b117e")]
 
 // 程序集的版本信息由下列四个值组成:
 //

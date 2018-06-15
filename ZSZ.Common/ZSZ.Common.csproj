@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuPengSMSResult.cs" />
+    <Compile Include="RuPengSMSSender.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

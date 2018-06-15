@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB7F8AD9-0557-4E41-AEC9-A90182B60B72}</ProjectGuid>
+    <ProjectGuid>{B7194AEE-947B-4A8D-8CF7-7699BB5FEFFC}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZSZ.FrontWeb</RootNamespace>
-    <AssemblyName>ZSZ.FrontWeb</AssemblyName>
+    <RootNamespace>ZSZ.Admin.Web</RootNamespace>
+    <AssemblyName>ZSZ.Admin.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -120,6 +120,24 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZSZ.CommonMVC\ZSZ.CommonMVC.csproj">
+      <Project>{37a4a56f-91f7-4112-9b23-17adf6556cf2}</Project>
+      <Name>ZSZ.CommonMVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.Common\ZSZ.Common.csproj">
+      <Project>{ea3bc0f9-5217-4728-a518-65cabea9cea6}</Project>
+      <Name>ZSZ.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.DTO\ZSZ.DTO.csproj">
+      <Project>{fe4d3f66-bd0e-4321-97c1-8eaab696e344}</Project>
+      <Name>ZSZ.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.IService\ZSZ.IService.csproj">
+      <Project>{f308ff37-a647-49fc-814e-29184b85d547}</Project>
+      <Name>ZSZ.IService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -133,9 +151,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15659</DevelopmentServerPort>
+          <DevelopmentServerPort>1806</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:15659/</IISUrl>
+          <IISUrl>http://localhost:1806/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
