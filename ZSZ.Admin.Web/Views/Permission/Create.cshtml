@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form action="~/Permission/Create" method="post" id="formCreate">
+    名称：<input type="text" name="name" id="name" />
+    描述：<input type="text" name="description" id="description" />
+    <input type="button" value="提交" id="btnSave" />
+</form>
+@section FooterScript
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSave").click(function () {
+                $.ajax({
+                    url: '/Permission/Create',
+                    data: $("#formCreate").serializeArray(),
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status == "ok") {
+                            parent.location.reload();
+                            //var index = parent.layer.getFrameIndex(window.name);
+                            //parent.$('.btn-refresh').click();
+                            //parent.layer.close(index);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
