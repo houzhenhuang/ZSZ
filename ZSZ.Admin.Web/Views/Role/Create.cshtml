@@ -1,0 +1,57 @@
+﻿@model ZSZ.DTO.PermissionDTO[]
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form action="~/Role/Create" method="post" id="formCreate" class="form form-horizontal">
+    <div class="row cl">
+        <label class="form-label col-3"><span class="c-red">*</span>名称：</label>
+        <div class="formControls col-5">
+            <input type="text" class="input-text" value="" placeholder="" id="name" name="name"  datatype="*1-50" nullmsg="角色名称不能为空" />
+        </div>
+        <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-3">
+                <input type="checkbox" id="permission_@item.Id" value="@item.Id" name="permissionIds" />
+                <label for="permission_@item.Id">@item.Description</label>
+            </div>
+        }
+    </div>
+    <div class="row cl">
+        <div class="col-9 col-offset-3">
+            <input class="btn btn-primary radius" type="button" id="btnSave" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+        </div>
+    </div>
+    <a></a>
+</form>
+@section FooterScript
+{
+    <script type="text/javascript">
+        $(function () {
+            /*校验*/
+            var validForm = $("#formCreate").Validform({ tiptype: 2 });
+            /*新增角色-保存*/
+            $("#btnSave").click(function () {
+                if (validForm.check(false)) {
+                    $.ajax({
+                        url: '/Role/Create',
+                        data: $("#formCreate").serializeArray(),
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.status == "ok") {
+                                parent.location.reload();
+                            } else if (res.status == "error") {
+
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+

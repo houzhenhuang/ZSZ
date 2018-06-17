@@ -1329,6 +1329,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1340,7 +1341,10 @@
     <Compile Include="lib\ueditor\1.4.3\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="lib\ueditor\1.4.3\net\App_Code\PathFormater.cs" />
     <Compile Include="lib\ueditor\1.4.3\net\App_Code\UploadHandler.cs" />
+    <Compile Include="Models\RoleCreateModel.cs" />
     <Compile Include="Models\PermissionCreateModel.cs" />
+    <Compile Include="Models\RoleEditGetModel.cs" />
+    <Compile Include="Models\RoleEditModel.cs" />
     <Compile Include="Models\PermissionEditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1437,6 +1441,9 @@
     <Content Include="Views\Permission\List.cshtml" />
     <Content Include="Views\Permission\Create.cshtml" />
     <Content Include="Views\Permission\Edit.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
