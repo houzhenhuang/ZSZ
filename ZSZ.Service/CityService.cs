@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ZSZ.DTO;
 using ZSZ.IService;
 using ZSZ.Service.Entities;
+using System.Data.Entity;
 
 namespace ZSZ.Service
 {
@@ -31,7 +32,14 @@ namespace ZSZ.Service
 
         public CityDTO[] GetAll()
         {
-            throw new NotImplementedException();
+            using (ZSZDbContext context=new ZSZDbContext ())
+            {
+                BaseService<CityEntity> service = new BaseService<CityEntity>(context);
+                return service.GetAll().AsNoTracking().Select(p=>new CityDTO {
+                    Name=p.Name,
+                    Id=p.Id
+                }).ToArray();
+            }
         }
 
         public CityDTO GetById(long id)
