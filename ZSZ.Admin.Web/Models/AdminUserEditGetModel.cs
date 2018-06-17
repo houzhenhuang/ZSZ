@@ -11,6 +11,6 @@ namespace ZSZ.Admin.Web.Models
         public AdminUserDTO AdminUser { get; set; }
         public RoleDTO[] AdminUserRole { get; set; }
         public RoleDTO[] Roles { get; set; }
-        public CityDTO[] Citys { get; set; }
+        public List<CityDTO> Citys { get; set; }
     }
 }

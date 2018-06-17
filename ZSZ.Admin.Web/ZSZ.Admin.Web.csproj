@@ -124,6 +124,7 @@
     <Content Include="images\acrossTab.png" />
     <Content Include="images\admin-login-bg.jpg" />
     <Content Include="images\admin-loginform-bg.png" />
+    <Content Include="images\error.jpg" />
     <Content Include="images\gq\cn.gif" />
     <Content Include="images\gq\gj.png" />
     <Content Include="images\gq\us.gif" />
@@ -1456,6 +1457,7 @@
     <Content Include="Views\AdminUser\Create.cshtml" />
     <Content Include="Views\AdminUser\Edit.cshtml" />
     <Content Include="Views\AdminUser\List.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

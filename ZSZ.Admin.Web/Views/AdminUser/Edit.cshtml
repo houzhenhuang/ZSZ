@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form action="~/AdminUser/Edit" method="post" id="formEdit" class="form form-horizontal">
-    <input type="hidden"  id="id" name="id" value="@Model.AdminUser.Id"/>
+    <input type="hidden" id="id" name="id" value="@Model.AdminUser.Id" />
     <div class="row cl">
         <label class="form-label col-3"><span class="c-red">*</span>手机号：</label>
         <div class="formControls col-5">
-            <input type="text" class="input-text" value="@Model.AdminUser.PhoneNum" placeholder="" id="phoneNum" name="phoneNum" datatype="*2-16" nullmsg="手机号不能为空">
+            <input type="text" class="input-text" value="@Model.AdminUser.PhoneNum" placeholder="" id="phoneNum" name="phoneNum" datatype="m" nullmsg="手机号不能为空">
         </div>
         <div class="col-4"> </div>
     </div>
@@ -16,6 +16,20 @@
         <label class="form-label col-3"><span class="c-red">*</span>姓名：</label>
         <div class="formControls col-5">
             <input type="text" class="input-text" value="@Model.AdminUser.Name" placeholder="" id="name" name="name" datatype="*2-16" nullmsg="姓名不能为空">
+        </div>
+        <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-3">密码：</label>
+        <div class="formControls col-5">
+            <input type="password" placeholder="留空则不修改密码"  value="" id="password"  name="password" class="input-text" datatype="*0-20">
+        </div>
+        <div class="col-4"> </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-3">确认密码：</label>
+        <div class="formControls col-5">
+            <input type="password" placeholder="留空则不修改密码" id="password2" name="password2" class="input-text" errormsg="您两次输入的新密码不一致！" datatype="*0-20">
         </div>
         <div class="col-4"> </div>
     </div>
@@ -62,10 +76,36 @@
 {
     <script type="text/javascript">
         $(function () {
+            var isExists = false;
             /*校验*/
             var validForm = $("#formCreate").Validform({ tiptype: 2 });
+
+            $("#phoneNum").blur(function () {
+                var phoneNum = $("#phoneNum").val();
+                if (phoneNum.length = 0) return;
+                $.ajax({
+                    url: '/AdminUser/CheckPhoneNum',
+                    data: { phoneNum: phoneNum },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status == "exists") {
+                            isExists = true;
+                            layer.msg('该手机号已被注册!', { icon: 2, time: 2000 });
+                        } else {
+                            isExists = false;
+                        }
+                    }
+                });
+            });
+
+
             $("#btnSave").click(function () {
                 if (validForm.check(false)) {
+                    if (isExists) {
+                        layer.msg('该手机号已被注册!', { icon: 1, time: 2000 });
+                        return;
+                    }
                     $.ajax({
                         url: '/AdminUser/Edit',
                         data: $("#formEdit").serializeArray(),

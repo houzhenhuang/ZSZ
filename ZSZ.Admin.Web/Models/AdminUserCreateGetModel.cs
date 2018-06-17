@@ -8,7 +8,7 @@ namespace ZSZ.Admin.Web.Models
 {
     public class AdminUserCreateGetModel
     {
-        public CityDTO[] Citys { get; set; }
+        public List<CityDTO> Citys { get; set; }
         public RoleDTO[] Roles { get; set; }
     }
 }

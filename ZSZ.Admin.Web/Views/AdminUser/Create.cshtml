@@ -7,7 +7,7 @@
     <div class="row cl">
         <label class="form-label col-3"><span class="c-red">*</span>手机号：</label>
         <div class="formControls col-5">
-            <input type="text" class="input-text" value="" placeholder="" id="phoneNum" name="phoneNum" datatype="*2-16" nullmsg="手机号不能为空">
+            <input type="text" class="input-text" value="" placeholder="" id="phoneNum" name="phoneNum" datatype="m" nullmsg="手机号不能为空" errormsg="手机号格式不正确">
         </div>
         <div class="col-4"> </div>
     </div>
@@ -35,7 +35,7 @@
     <div class="row cl">
         <label class="form-label col-3"><span class="c-red">*</span>邮箱：</label>
         <div class="formControls col-5">
-            <input type="text" class="input-text" placeholder="" name="email" id="email" datatype="e" nullmsg="请输入邮箱！">
+            <input type="email" class="input-text" placeholder="" name="email" id="email" datatype="e" nullmsg="请输入邮箱！">
         </div>
         <div class="col-4"> </div>
     </div>
@@ -64,15 +64,15 @@
             }
         </div>
         @*<div class="formControls col-5">
-            <span class="select-box" style="width:150px;">
-                <select class="select" name="admin-role" size="1">
-                    <option value="0">超级管理员</option>
-                    <option value="1">总编</option>
-                    <option value="2">栏目主辑</option>
-                    <option value="3">栏目编辑</option>
-                </select>
-            </span>
-        </div>*@
+                <span class="select-box" style="width:150px;">
+                    <select class="select" name="admin-role" size="1">
+                        <option value="0">超级管理员</option>
+                        <option value="1">总编</option>
+                        <option value="2">栏目主辑</option>
+                        <option value="3">栏目编辑</option>
+                    </select>
+                </span>
+            </div>*@
     </div>
     <div class="row cl">
         <div class="col-9 col-offset-3">
@@ -85,11 +85,37 @@
 {
     <script type="text/javascript">
         $(function () {
+            var isExists = false;
             /*校验*/
             var validForm = $("#formCreate").Validform({ tiptype: 2 });
+
+            $("#phoneNum").blur(function () {
+                var phoneNum = $("#phoneNum").val();
+                if (phoneNum.length = 0) return;
+                $.ajax({
+                    url: '/AdminUser/CheckPhoneNum',
+                    data: { phoneNum: phoneNum },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status == "exists") {
+                            isExists = true;
+                            layer.msg('该手机号已被注册!', { icon: 2, time: 2000 });
+                        } else {
+                            isExists = false;
+                        }
+                    }
+                });
+            });
+
+
             /*新增管理员-保存*/
             $("#btnSave").click(function () {
                 if (validForm.check(false)) {
+                    if (isExists) {
+                        layer.msg('该手机号已被注册!', { icon: 1, time: 2000 });
+                        return;
+                    }
                     $.ajax({
                         url: '/AdminUser/Create',
                         data: $("#formCreate").serializeArray(),
@@ -106,6 +132,7 @@
                 }
             });
         });
+
     </script>
 }
 

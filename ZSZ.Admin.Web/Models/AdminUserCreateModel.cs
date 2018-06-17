@@ -11,10 +11,17 @@ namespace ZSZ.Admin.Web.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        [Required]
         public string PhoneNum { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
+        [Compare(nameof(Password))]
+        public string Password2 { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
-        public int? CityId { get; set; }
+        public long? CityId { get; set; }
         public long[] roleIds { get; set; }
     }
 }
