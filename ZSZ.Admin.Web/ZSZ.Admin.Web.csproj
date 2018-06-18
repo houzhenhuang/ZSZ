@@ -1329,7 +1329,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutoFacConfig.cs" />
+    <Compile Include="App_Start\CustomAuthorizeFilter.cs" />
+    <Compile Include="App_Start\CustomPermissionAttribute.cs" />
     <Compile Include="App_Start\ExceptionFilter.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />

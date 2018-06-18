@@ -18,6 +18,10 @@ namespace ZSZ.Admin.Web.Controllers
         // GET: Index
         public ActionResult Index()
         {
+            if (Session["LoginUserId"] == null)
+            {
+                return new RedirectResult("Login");
+            }
             return View();
         }
         [HttpGet]
@@ -28,7 +32,11 @@ namespace ZSZ.Admin.Web.Controllers
         [HttpPost]
         public JsonResult Login(AdminLoginModel model)
         {
-            if ((string)Session["VerifyCode"] != model.VerifyCode)
+            if (!ModelState.IsValid)
+            {
+                return Json(new AjaxResult { Status = "error", ErrorMsg = MVCHelper.GetValidMsg(ModelState) });
+            }
+            if ((string)TempData["VerifyCode"] != model.VerifyCode)
             {
                 return Json(new AjaxResult { Status = "error", ErrorMsg = "验证码错误" });
             }
@@ -46,7 +54,7 @@ namespace ZSZ.Admin.Web.Controllers
         public ActionResult CreateVerifyCode()
         {
             string verifyCode = CommonHelper.CreateVerifyCode(4);
-            Session["VerifyCode"] = verifyCode;
+            TempData["VerifyCode"] = verifyCode;
             MemoryStream ms = ImageFactory.GenerateImage(verifyCode, 40, 100, 14, 1);
             return File(ms, "image/jpeg");
         }

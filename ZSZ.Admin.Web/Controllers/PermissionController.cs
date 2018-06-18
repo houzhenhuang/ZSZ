@@ -13,12 +13,14 @@ namespace ZSZ.Admin.Web.Controllers
     {
         public IPermissionService PermService { get; set; }
         // GET: Permission
+        [CustomPermission("Permission.List")]
         public ActionResult List()
         {
             var perm = PermService.GetAll();
             return View(perm);
         }
         [HttpGet]
+        [CustomPermission("Permission.Add")]
         public ActionResult Create()
         {
             return View();
@@ -30,6 +32,7 @@ namespace ZSZ.Admin.Web.Controllers
             return Json(new AjaxResult { Status = "ok" });
         }
         [HttpGet]
+        [CustomPermission("Permission.Edit")]
         public ActionResult Edit(int id)
         {
             var perm = PermService.GetById(id);
@@ -41,6 +44,7 @@ namespace ZSZ.Admin.Web.Controllers
             PermService.UpdatePermission(model.Id, model.Name, model.Description);
             return Json(new AjaxResult { Status = "ok" });
         }
+        [CustomPermission("Permission.Delete")]
         public JsonResult Delete(long id)
         {
             PermService.MarkDeleted(id);

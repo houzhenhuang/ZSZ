@@ -14,12 +14,14 @@ namespace ZSZ.Admin.Web.Controllers
         public IRoleService RoleService { get; set; }
         public IPermissionService PermService { get; set; }
         // GET: Role
+        [CustomPermission("Role.List")]
         public ActionResult List()
         {
             var perm = RoleService.GetAll();
             return View(perm);
         }
         [HttpGet]
+        [CustomPermission("Role.Add")]
         public ActionResult Create()
         {
             var perms = PermService.GetAll();
@@ -37,6 +39,7 @@ namespace ZSZ.Admin.Web.Controllers
             return Json(new AjaxResult { Status = "ok" });
         }
         [HttpGet]
+        [CustomPermission("Role.Edit")]
         public ActionResult Edit(int id)
         {
             var role = RoleService.GetById(id);
@@ -56,12 +59,14 @@ namespace ZSZ.Admin.Web.Controllers
             PermService.UpdatePermIds(model.Id,model.PermissionIds);
             return Json(new AjaxResult { Status = "ok" });
         }
+        [CustomPermission("Role.Delete")]
         public JsonResult Delete(long id)
         {
             RoleService.MarkDeleted(id);
 
             return Json(new AjaxResult { Status = "ok" });
         }
+        [CustomPermission("Role.Delete")]
         public JsonResult BatchDelete(long[] selectId)
         {
             foreach (var roleId in selectId)

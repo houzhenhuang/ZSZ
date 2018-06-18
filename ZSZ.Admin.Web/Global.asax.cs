@@ -18,8 +18,8 @@ namespace ZSZ.Admin.Web
             ModelBinders.Binders.Add(typeof(long), new TrimToDBCModelBinder());
             ModelBinders.Binders.Add(typeof(double), new TrimToDBCModelBinder());
             AutofacConfig.RegisterAutofac();
-            GlobalFilters.Filters.Add(new ExceptionFilter());
-            GlobalFilters.Filters.Add(new JsonNetActionFilter());
+            FilterConfig.RegisterFilters(GlobalFilters.Filters);
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

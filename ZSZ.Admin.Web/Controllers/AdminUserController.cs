@@ -15,12 +15,14 @@ namespace ZSZ.Admin.Web.Controllers
         public IRoleService RoleService { get; set; }
         public ICityService CityService { get; set; }
         // GET: Role
+        [CustomPermission("AdminUser.List")]
         public ActionResult List()
         {
             var adminUser = AdminUserService.GetAll();
             return View(adminUser);
         }
         [HttpGet]
+        [CustomPermission("AdminUser.Add")]
         public ActionResult Create()
         {
             var role = RoleService.GetAll();
@@ -46,6 +48,7 @@ namespace ZSZ.Admin.Web.Controllers
             return Json(new AjaxResult { Status = "ok" });
         }
         [HttpGet]
+        [CustomPermission("AdminUser.Edit")]
         public ActionResult Edit(int id)
         {
             var adminUser = AdminUserService.GetById(id);
@@ -68,16 +71,18 @@ namespace ZSZ.Admin.Web.Controllers
         [HttpPost]
         public ActionResult Edit(AdminUserEditModel model)
         {
-            AdminUserService.UpdateAdminUser(model.Id, model.Name, model.PhoneNum, model.Password, model.Email, model.CityId);
+            AdminUserService.UpdateAdminUser(model.Id, model.Name, model.PhoneNum, model.Password, model.Email, model.CityId==0?null: model.CityId);
             RoleService.UpdateRoleIds(model.Id, model.RoleIds);
             return Json(new AjaxResult { Status = "ok" });
         }
+        [CustomPermission("AdminUser.Delete")]
         public JsonResult Delete(long id)
         {
             AdminUserService.MarkDeleted(id);
 
             return Json(new AjaxResult { Status = "ok" });
         }
+        [CustomPermission("AdminUser.Delete")]
         public JsonResult BatchDelete(long[] selectId)
         {
             foreach (var roleId in selectId)
